@@ -17,6 +17,7 @@ $ cp vodacom.py /usr/share/diamond/collectors/vodacom
 To configure:
 $ nano /etc/diamond/collectors/MyVodacomCollector.conf
 enabled = True
+interval = 3600
 email_address = your@email.address
 password = hunter2
 phone_numbers = "0761234567, 0827654321"
