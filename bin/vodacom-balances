@@ -1,0 +1,44 @@
+#!/bin/env python
+
+import argparse
+import logging
+import json
+import sys
+
+from myvodacom_stats.myvodacom import MyVodacom
+
+log = logging.getLogger(__name__)
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('email_address', help='email address to use to login to myvodacom')
+    parser.add_argument('password', help='password for logging in')
+    parser.add_argument('phone_numbers', nargs='+', help='A list of phone numbers linked to your vodacom account')
+    parser.add_argument('-j', '--json', action='store_true', help='output as json object instead of text')
+    parser.add_argument('-v', '--verbose', action='store_true', help='show detailed logging')
+    args = parser.parse_args()
+
+    if args.json or not args.verbose:
+        logging.getLogger('').addHandler(logging.NullHandler())
+    elif args.verbose:
+        logging.getLogger('').addHandler(logging.StreamHandler())
+        logging.getLogger('').setLevel(logging.DEBUG)
+
+    try:
+        result = MyVodacom(args.email_address, args.password).login().get_bundle_balances(args.phone_numbers)
+        if args.json:
+            print json.dumps(result, indent=2, sort_keys=True)
+        else:
+            for phone_number, services in result.items():
+                print phone_number
+                for service, details in services.items():
+                    print '   ', service
+                    print '       Remaining:', details['remaining'], details['unit'].lower()
+    except Exception as e:
+        if args.json:
+            result = {'error': e.message}
+            print json.dumps(result, indent=2, sort_keys=True)
+        else:
+            print e.message
+            log.exception(e)
+        sys.exit(1)

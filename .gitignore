@@ -7,3 +7,7 @@
 /htmlcov
 .coverage
 /venv
+/.idea
+/.ipynb_checkpoints
+*.ipynb
+.password

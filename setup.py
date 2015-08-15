@@ -29,7 +29,7 @@ setup(
     packages=['myvodacom_stats'],
 
     # runtime scripts
-    scripts=[],
+    scripts=['bin/vodacom-balances'],
 
     # requirements
     install_requires=['requests'],
