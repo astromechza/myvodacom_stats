@@ -51,7 +51,7 @@ class MyVodacomCollector(diamond.collector.Collector):
                     phone_numbers = map(lambda pn: pn.strip(), phone_numbers.split(','))
                     phone_numbers = filter(lambda pn: len(pn) > 0, phone_numbers)
 
-                data = MyVodacom(email, password).get_bundle_balances(phone_numbers)
+                data = MyVodacom(email, password).login().get_bundle_balances(phone_numbers)
 
                 for number, services in data.items():
                     for service, details in services:
