@@ -40,7 +40,8 @@ class MyVodacomCollector(diamond.collector.Collector):
             'email_address': '',
             'password': '',
             'phone_numbers': [],
-            'path': 'vodacom'
+            'path': 'vodacom',
+            'interval': 3600
         })
         return config
 
