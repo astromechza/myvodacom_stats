@@ -9,6 +9,24 @@ For this reason, this file contains a implementation of a diamond collector that
 will get the balances and log them to a diamond/carbon/graphite setup.
 
 For more info see: https://github.com/BrightcoveOS/Diamond/wiki/CustomCollectors
+
+To install:
+$ mkdir /usr/share/diamond/collectors/vodacom
+$ cp vodacom.py /usr/share/diamond/collectors/vodacom
+
+To configure:
+$ nano /etc/diamond/collectors/MyVodacomCollector.conf
+enabled = True
+email_address = your@email.address
+password = hunter2
+phone_numbers = "0761234567, 0827654321"
+
+Add a new storage schema setting:
+$ nano /etc/carbon/storage-schemas.conf
+...
+[vodacom]
+pattern = ^vodacom\.
+retentions = 1h:5y
 """
 
 
@@ -37,7 +55,7 @@ class MyVodacomCollector(diamond.collector.Collector):
 
                 for number, services in data.items():
                     for service, details in services:
-                        name = "%s.%s.remaining" % (number, service)
+                        name = "vodacom.%s.%s.remaining" % (number, service)
                         self.publish_gauge(name, float(details['remaining']))
 
                 return True
