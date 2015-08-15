@@ -41,7 +41,7 @@ class MyVodacomCollector(diamond.collector.Collector):
             'password': '',
             'phone_numbers': [],
             'path': 'vodacom',
-            'interval': 3600
+            'interval': '3600'
         })
         return config
 
