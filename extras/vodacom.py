@@ -18,6 +18,7 @@ To configure:
 $ nano /etc/diamond/collectors/MyVodacomCollector.conf
 enabled = True
 interval = 3600
+path = vodacom
 email_address = your@email.address
 password = hunter2
 phone_numbers = "0761234567, 0827654321"
@@ -38,7 +39,8 @@ class MyVodacomCollector(diamond.collector.Collector):
         config.update({
             'email_address': '',
             'password': '',
-            'phone_numbers': []
+            'phone_numbers': [],
+            'path': 'vodacom'
         })
         return config
 
