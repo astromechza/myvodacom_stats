@@ -4,6 +4,8 @@ This is a pretty simple python module that allows a user to query their Vodacom 
 
 Authentication is done via a MyVodacom account and all requests are via the Rest API that vodacom uses to back its MyVodacom website.
 
+(Vodacom is a major cellphone service provider in South Africa)
+
 ## How to use:
 ```
 $ git clone <this git repo>
