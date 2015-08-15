@@ -26,7 +26,7 @@ Add a new storage schema setting:
 $ nano /etc/carbon/storage-schemas.conf
 ...
 [vodacom]
-pattern = ^vodacom\.
+pattern = \.vodacom\.
 retentions = 1h:5y
 """
 
