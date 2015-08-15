@@ -55,7 +55,7 @@ class MyVodacomCollector(diamond.collector.Collector):
                 data = MyVodacom(email, password).login().get_bundle_balances(phone_numbers)
 
                 for number, services in data.items():
-                    for service, details in services:
+                    for service, details in services.items():
                         name = "vodacom.%s.%s.remaining" % (number, service)
                         self.publish_gauge(name, float(details['remaining']))
 
